@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        html,body{
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+        }
+        body{
+            background-color: rgb(235, 219, 219);
+           
+        }
+        .Clock{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: inherit;
+            color:red;
+            transform: translateX(-50%),translateY(-50%);
+            font-size: 60px;
+            font-family: Orbitron;
+            letter-spacing:7px;
+        }
+    </style>
+</head>
+<body>
+<div id="DigitalClock" class="Clock"></div>
+<script type="text/javascript">
+function showTime(){
+   //debugger
+    var date=new Date();
+    var h=date.getHours();
+    var m=date.getMinutes();
+    var s=date.getSeconds();
+
+    //session to know AM or PM
+    var session ="AM";
+    //hour =0 mid night
+    //changing 24 hours format to 12 hour
+    if(h==0){
+        h=12; //12 hour format
+    }   
+    if(h>12){
+        h=h-12;//12 hour format
+        session ="PM";
+
+    }
+
+    //if(h == 12) session = 'PM'
+    //to get in two  digit
+    //if(h<10){//0 to 9
+    //h="0"+h;
+
+    //}
+    //if(m<10){//0 to 9
+    // m="0"+m;
+
+    //}
+    //if(s<10){//0 to 9
+     //s="0"+s;
+
+    //}
+    //code is big so using ternary
+
+
+    h=(h<10)?"0"+h:h;
+    m=(m<10)?"0"+m:m;
+    s=(s<10)?"0"+s:s;
+
+
+
+
+
+
+    document.getElementById("DigitalClock").innerHTML= h + ":" + m + ":" + s + "" +session ;
+    //to rerun every second 
+    setTimeout(showTime,1000);//1 sec=1000ms
+
+}
+showTime();//one time its called no change
+</script>
+</body>
+</html>
